@@ -7,7 +7,8 @@ from pydantic import BaseModel
 from typing import List
 import json
 import os
-
+from dotenv import load_dotenv
+load_dotenv()
 # Configure Streamlit page for mobile optimization
 st.set_page_config(
     page_title="🍎 Food Calorie Scanner",
@@ -164,14 +165,14 @@ def main():
     st.markdown("📱 *Take a photo of your food to get instant nutrition analysis*")
     
     # API Key input (for development)
-    if "GEMINI_API_KEY" not in st.secrets:
-        api_key = st.text_input(
-            "🔑 Enter your Gemini API Key:",
-            type="password",
-            help="Get your API key from Google AI Studio"
-        )
-        if api_key:
-            st.session_state["gemini_api_key"] = api_key
+    # if "GEMINI_API_KEY" not in st.secrets:
+    #     api_key = st.text_input(
+    #         "🔑 Enter your Gemini API Key:",
+    #         type="password",
+    #         help="Get your API key from Google AI Studio"
+    #     )
+    #     if api_key:
+    #         st.session_state["gemini_api_key"] = api_key
     
     # Camera input
     st.subheader("📸 Capture Your Food")
@@ -210,9 +211,9 @@ def main():
         if st.button("🔍 Analyze Nutrition", type="primary", use_container_width=True):
             
             # Check for API key
-            if "GEMINI_API_KEY" not in st.secrets and "gemini_api_key" not in st.session_state:
-                st.error("⚠️ Please enter your Gemini API key to proceed")
-                return
+            # if "GEMINI_API_KEY" not in st.secrets and "gemini_api_key" not in st.session_state:
+            #     st.error("⚠️ Please enter your Gemini API key to proceed")
+            #     return
             
             with st.spinner("🤖 AI is analyzing your food..."):
                 # Convert image to bytes
