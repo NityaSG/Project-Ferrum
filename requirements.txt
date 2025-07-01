@@ -1,4 +1,5 @@
 google-genai
 streamlit
 pydantic
+python-dotenv
 pillow
