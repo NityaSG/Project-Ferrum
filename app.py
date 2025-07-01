@@ -6,6 +6,7 @@ from google.genai import types
 from pydantic import BaseModel
 from typing import List
 import json
+import os
 
 # Configure Streamlit page for mobile optimization
 st.set_page_config(
@@ -74,7 +75,7 @@ class NutritionAnalysis(BaseModel):
 # Initialize Gemini client
 @st.cache_resource
 def get_gemini_client():
-    return genai.Client(api_key=st.secrets.get("GEMINI_API_KEY", ""))
+    return genai.Client(api_key=os.getenv("GEMINI_API_KEY", ""))
 
 def analyze_food_image(image_bytes: bytes) -> NutritionAnalysis:
     """Analyze food image using Gemini and return structured nutrition data"""
